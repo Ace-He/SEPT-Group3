@@ -1,0 +1,8 @@
+server:
+  port: 8080
+
+gp:
+  id: 1
+  name: Ace
+  sex: true
+  age: 19
