@@ -3,22 +3,33 @@ package com.Group3.pojo;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.validation.constraints.Email;
 
+@Entity
 @Component
 @Validated
 public class Patient {
+    @Id
     private int id;
     private String name;
     private boolean sex;
     private int age;
     @Email(message = "Please enter a valid Email address")
     private String email;
+    private String password;
+
+
 
 
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setId(int id) {
@@ -36,6 +47,7 @@ public class Patient {
     public void setAge(int age) {
         this.age = age;
     }
+
 
     public int getId() {
         return id;
@@ -56,6 +68,12 @@ public class Patient {
     public String getEmail() {
         return email;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+
 
     public Patient() {
     }

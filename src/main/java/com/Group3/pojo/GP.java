@@ -1,20 +1,35 @@
 package com.Group3.pojo;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
 import java.util.List;
 
 
+@Entity
 @Component
 @ConfigurationProperties(prefix = "gp")
 public class GP {
-
+    @Id
     private int id;
     private String name;
+    @Email @UniqueElements
+    private String email;
+    private String password;
     private boolean sex;
     private int age;
+    @OneToMany
     private List<Patient> patients;
 
+
+
+    public GP() {
+    }
 
 
     public void setId(int id) {
@@ -31,6 +46,14 @@ public class GP {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setPatients(List<Patient> patients) {
@@ -56,6 +79,14 @@ public class GP {
 
     public int getAge() {
         return age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
 

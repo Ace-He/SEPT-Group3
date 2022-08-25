@@ -1,4 +1,5 @@
 server:
+  ip: localhost
   port: 8080
 
 gp:
@@ -6,3 +7,15 @@ gp:
   name: Ace
   sex: true
   age: 19
+
+spring:
+  datasoure:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://database-1.ccvsmqkpv9i9.ap-southeast-2.rds.amazonaws.com/TELEMEDICINE
+    username: admin
+    password: septgroup3
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      database: mysql
