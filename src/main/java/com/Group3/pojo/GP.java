@@ -1,5 +1,6 @@
 package com.Group3.pojo;
 
+import com.Group3.Patient;
 import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
