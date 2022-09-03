@@ -3,6 +3,7 @@ package com.Group3.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import com.Group3.Patient;
 import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
