@@ -1,97 +1,32 @@
 package com.Group3.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+//import javax.persistence.Entity;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
 import javax.validation.constraints.Email;
 
-@Entity
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Component
 @Validated
 public class Patient {
-    @Id
-    private int id;
+//    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String name;
-    private boolean sex;
-    private int age;
-    @Email(message = "Please enter a valid Email address")
+    private Integer sex;  //0: female, 1: male;
+    @Email(message = "Please enter a valid Email address") @UniqueElements
     private String email;
     private String password;
 
 
-
-
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSex(boolean sex) {
-        this.sex = sex;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public boolean isSex() {
-        return sex;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-
-
-    public Patient() {
-    }
-
-    public Patient(int id, String name, boolean sex, int age) {
-        this.id = id;
-        this.name = name;
-        this.sex = sex;
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "Patient{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", sex=" + sex +
-                ", age=" + age +
-                '}';
-    }
 }
