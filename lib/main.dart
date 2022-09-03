@@ -7,16 +7,16 @@ void main() {
 }
 
 ColorScheme defaultColorScheme = const ColorScheme(
-  primary: Color(0xffBB86FC),
-  secondary: Color(0xff03DAC6),
-  surface: Color(0xff181818),
-  background: Color(0xff121212),
-  error: Color(0xffCF6679),
-  onPrimary: Color(0xff000000),
-  onSecondary: Color(0xff000000),
+  primary: Color(0xff98AFC7),
+  secondary: Color(0xffFC652E),
+  surface: Color(0xff686a6c),
+  background: Color(0xff686a6c),
+  error: Color(0xffff2800),
+  onPrimary: Color(0xff686a6c),
+  onSecondary: Color(0xff686a6c),
   onSurface: Color(0xffffffff),
   onBackground: Color(0xffffffff),
-  onError: Color(0xff000000),
+  onError: Color(0xff686a6c),
   brightness: Brightness.dark,
 );
 
