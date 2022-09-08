@@ -36,6 +36,10 @@ class _CalendarState extends State<Calendar> {
         });
         print(focusedDay);
       },
+      selectedDayPredicate: (DateTime date){
+        return isSameDay(selectedDay,date);
+      },
+      //To style the calendar
       calendarStyle: CalendarStyle(
         isTodayHighlighted: true,
         selectedDecoration: BoxDecoration(
@@ -49,7 +53,15 @@ class _CalendarState extends State<Calendar> {
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(5.0),
 
-      )
+      ),
+      defaultDecoration:BoxDecoration(
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(5.0)
+      ),
+      weekendDecoration: BoxDecoration(
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.circular(5.0)
+      ),
       ),
       headerStyle: HeaderStyle(
         formatButtonVisible: true,
