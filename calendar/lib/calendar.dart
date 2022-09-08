@@ -6,10 +6,18 @@ class Calendar extends StatefulWidget {
   _CalendarState createState() => _CalendarState();
 }
 class _CalendarState extends State<Calendar> {
-  CalendarFormat format = CalendarFormat.month;
-  DateTime selectedDay = DateTime.now();
-  DateTime focusedDay = DateTime.now();
 
+  //Map<DateTime,List<Event>> selectedEvents;
+ CalendarFormat format = CalendarFormat.month;
+DateTime selectedDay = DateTime.now();
+  DateTime focusedDay = DateTime.now();
+//@override
+//void initState() {
+  //selectedEvents ={}
+  //super.initState();
+//List<Event> _getEventsfromDay(DateTime date){
+ // return selectedEvents [date] ??[];
+//}
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -39,6 +47,7 @@ class _CalendarState extends State<Calendar> {
       selectedDayPredicate: (DateTime date){
         return isSameDay(selectedDay,date);
       },
+      //eventLoader: _getEventsfromDay,
       //To style the calendar
       calendarStyle: CalendarStyle(
         isTodayHighlighted: true,
@@ -78,7 +87,29 @@ class _CalendarState extends State<Calendar> {
         rightChevronVisible: false, headerPadding: EdgeInsets.symmetric(horizontal: 5.0,vertical: 10.0),
       ),
       ),
-    );
+      floatingActionButton: FloatingActionButton(
+      onPressed:() => showDialog(
+      context: context, 
+      builder:(context) =>AlertDialog(
+        title: Text("Add Appointment"),
+        content: Text("Enter reason for appointment"),
+        actions: [
+          TextButton(
+        child: Text("Cancel"),
+        onPressed: () => Navigator.pop(context),
+      ),
+      TextButton(child: Text("Ok"),
+      onPressed: ()=> Navigator.pop(context),
+      )]
+      ),
+      
+        
+        
+      ),
+      ),
+      );
+    
+    
 
   }
 }
