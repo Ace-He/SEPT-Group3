@@ -1,6 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
+import 'package:dio/dio.dart';
+import 'dart:convert' as convert;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required this.title}) : super(key: key);
@@ -13,6 +15,44 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   var rememberValue = false;
+  late TextEditingController emailController = TextEditingController();
+  late TextEditingController passwordController = TextEditingController();
+
+  loginMethod() async {
+    Map<String, dynamic> data = {
+      "email": emailController.text,
+      "password": passwordController.text,
+    };
+    Response response = await Dio().post(
+      "http://127.0.0.1:8083/login",
+      data: data,
+    );
+    print("http parameters start：");
+    print(data);
+    print("http parameters end：");
+
+    print("http request start");
+    print(response.data);
+    print("http request end");
+
+    Map<String, dynamic> map;
+    if (response.data is String) {
+      map = convert.jsonDecode(response.data) ?? {};
+    } else {
+      map = response.data;
+    }
+
+    // Update when merged with home page
+    // if (map["code"].toString() == "200")
+    // {
+    //   Navigator.push<void>(
+    //     context,
+    //     MaterialPageRoute<void>(
+    //       builder: (BuildContext context) => const HomePage(),
+    //     ),
+    //   );
+    // }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +128,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        loginMethod();
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),

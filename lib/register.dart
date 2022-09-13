@@ -1,7 +1,8 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
-import 'package:intl/intl.dart';
+import 'package:dio/dio.dart';
+import 'dart:convert' as convert;
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key, required this.title}) : super(key: key);
@@ -13,9 +14,51 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
-  var rememberValue = false;
-  String birthDateInString = "";
-  DateTime birthDate = DateTime.now();
+  late String groupValue = "sex";
+  late bool isRegister = false;
+  late TextEditingController firstNameController = TextEditingController();
+  late TextEditingController lastNameController = TextEditingController();
+  late TextEditingController emailController = TextEditingController();
+  late TextEditingController ageController = TextEditingController();
+  late TextEditingController passwordController = TextEditingController();
+
+  registerMethod() async {
+    Map<String, dynamic> data = {
+      "first name": firstNameController.text,
+      "last name": lastNameController.text,
+      "email": emailController.text,
+      "sex": groupValue,
+      "age": ageController.text,
+      "flag": "2",
+      "password": passwordController.text,
+    };
+
+    print(data);
+    Response response = await Dio().post(
+      "http://127.0.0.1:8083/register",
+      data: data,
+    );
+    print("http parameters start：");
+    print(data);
+    print("http parameters end：");
+
+    print("http request start");
+    print(response.data);
+    print("http request end");
+
+    Map<String, dynamic> map;
+    if (response.data is String) {
+      map = convert.jsonDecode(response.data) ?? {};
+    } else {
+      map = response.data;
+    }
+
+    if (map["code"].toString() == "200") {
+      setState(() {
+        isRegister = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,9 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       Expanded(
                         child: TextFormField(
-                          validator: (value) => EmailValidator.validate(value!)
-                              ? null
-                              : "Please enter a valid email",
+                          controller: firstNameController,
                           maxLines: 1,
                           decoration: InputDecoration(
                             hintText: 'First name',
@@ -63,9 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       Expanded(
                         child: TextFormField(
-                          validator: (value) => EmailValidator.validate(value!)
-                              ? null
-                              : "Please enter a valid email",
+                          controller: lastNameController,
                           maxLines: 1,
                           decoration: InputDecoration(
                             hintText: 'Last name',
@@ -82,6 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 20,
                   ),
                   TextFormField(
+                    controller: emailController,
                     validator: (value) => EmailValidator.validate(value!)
                         ? null
                         : "Please enter a valid email",
@@ -100,39 +140,38 @@ class _RegisterPageState extends State<RegisterPage> {
                   Row(
                       children: [
                         Expanded(
-                          child: DropdownButton(
+                          child: DropdownButtonFormField(
                             items: <String>['Male', 'Female', 'Other'].map((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
                               );
                             }).toList(),
-                            hint: const Text("Gender"),
-                            onChanged: (value) {},
+                            onChanged: (String? value) {
+                              groupValue = value!;
+                            },
+                            decoration: InputDecoration(
+                              hintText: 'Gender',
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
                           ),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         Expanded(
-                          child: GestureDetector(
-                            child: const Icon(Icons.calendar_today),
-                            onTap: ()async{
-                              final datePick= await showDatePicker(
-                                  context: context,
-                                  initialDate: DateTime.now(),
-                                  firstDate: DateTime(1900),
-                                  lastDate: DateTime(2100)
-                              );
-                              if(datePick!=null && datePick!=birthDate){
-                                setState(() {
-                                  birthDate = datePick;
-
-                                  birthDateInString = "${birthDate.month}/${birthDate.day}/${birthDate.year}"; // 08/14/2019
-
-                                });
-                              }
-                            },
+                          child: TextFormField(
+                            controller: ageController,
+                            maxLines: 1,
+                            decoration: InputDecoration(
+                              hintText: 'Age',
+                              prefixIcon: const Icon(Icons.calendar_today),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
                           ),
                         ),
                       ]
@@ -141,6 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 20,
                   ),
                   TextFormField(
+                    controller: passwordController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
@@ -162,7 +202,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {}
+                      if (_formKey.currentState!.validate()) {
+                        registerMethod();
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
