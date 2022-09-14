@@ -5,8 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d68ac131-4755-45ab-a912-4cdb31ad1ae0" name="Changes" comment="Main file edit">
-      <change afterPath="$PROJECT_DIR$/SEPT_Group3/src/main/java/com/example/sept_group3/login.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/HELP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/SEPT_Group3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/src/main/java/com/example/sept_group3/SeptGroup3Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/src/main/java/com/example/sept_group3/calendar.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/src/main/java/com/example/sept_group3/login.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/src/main/java/com/example/sept_group3/main.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/src/test/java/com/example/sept_group3/SeptGroup3ApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/target/classes/com/example/sept_group3/SeptGroup3Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/target/classes/com/example/sept_group3/calendar.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/target/classes/com/example/sept_group3/login.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/target/classes/com/example/sept_group3/main.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SEPT_Group3/target/test-classes/com/example/sept_group3/SeptGroup3ApplicationTests.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +39,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="front-end" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,6 +67,13 @@
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
     "last_opened_file_path": "/Users/nicholassantosa/Documents/2022/Semester 2/Software Engineering Process and Tools/Assignments/SEPT-Group3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "spring.configuration.checksum": "e148a902f832d582c6eb8341ed749918"
   }
 }]]></component>
@@ -87,6 +110,7 @@
       <workItem from="1661238534244" duration="2098000" />
       <workItem from="1661240942289" duration="2000" />
       <workItem from="1661241052660" duration="1671000" />
+      <workItem from="1663118174175" duration="434000" />
     </task>
     <task id="LOCAL-00001" summary="Main file added">
       <created>1661240690054</created>
