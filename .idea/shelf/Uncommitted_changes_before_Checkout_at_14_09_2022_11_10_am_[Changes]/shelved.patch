@@ -1,0 +1,48 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -44,30 +44,17 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "WebServerToolWindowFactoryState": "false",
+-    "dart.analysis.tool.window.visible": "false",
+-    "last_opened_file_path": "/Users/nicholassantosa/Documents/2022/Semester 2/Software Engineering Process and Tools/Assignments/SEPT-Group3",
+-    "spring.configuration.checksum": "e148a902f832d582c6eb8341ed749918"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
++    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
++    &quot;last_opened_file_path&quot;: &quot;/Users/nicholassantosa/Documents/2022/Semester 2/Software Engineering Process and Tools/Assignments/SEPT-Group3&quot;,
++    &quot;spring.configuration.checksum&quot;: &quot;e148a902f832d582c6eb8341ed749918&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RunManager">
+-    <configuration default="true" type="JetRunConfigurationType">
+-      <module name="SEPT-Group3" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+-      <module name="SEPT-Group3" />
+-      <option name="filePath" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+     <configuration name="SeptGroup3Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+       <module name="SEPT_Group3" />
+       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.sept_group3.SeptGroup3Application" />
