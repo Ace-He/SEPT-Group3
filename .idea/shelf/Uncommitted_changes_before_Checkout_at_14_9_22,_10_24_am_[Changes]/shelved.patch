@@ -1,0 +1,14 @@
+Index: src/main/java/com/Group3/pojo/GP.java
+===================================================================
+diff --git a/src/main/java/com/Group3/pojo/GP.java b/src/main/java/com/Group3/pojo/GP.java
+--- a/src/main/java/com/Group3/pojo/GP.java	
++++ b/src/main/java/com/Group3/pojo/GP.java	
+@@ -3,7 +3,7 @@
+ import lombok.AllArgsConstructor;
+ import lombok.Data;
+ import lombok.NoArgsConstructor;
+-import com.Group3.Patient;
++import com.Group3.pojo.Patient;
+ import org.hibernate.validator.constraints.UniqueElements;
+ import org.springframework.boot.context.properties.ConfigurationProperties;
+ import org.springframework.stereotype.Component;

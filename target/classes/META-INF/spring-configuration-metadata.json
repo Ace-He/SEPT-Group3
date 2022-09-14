@@ -1,0 +1,47 @@
+{
+  "groups": [
+    {
+      "name": "gp",
+      "type": "com.Group3.pojo.GP",
+      "sourceType": "com.Group3.pojo.GP"
+    }
+  ],
+  "properties": [
+    {
+      "name": "gp.age",
+      "type": "java.lang.Integer",
+      "sourceType": "com.Group3.pojo.GP"
+    },
+    {
+      "name": "gp.email",
+      "type": "java.lang.String",
+      "sourceType": "com.Group3.pojo.GP"
+    },
+    {
+      "name": "gp.id",
+      "type": "java.lang.Integer",
+      "sourceType": "com.Group3.pojo.GP"
+    },
+    {
+      "name": "gp.name",
+      "type": "java.lang.String",
+      "sourceType": "com.Group3.pojo.GP"
+    },
+    {
+      "name": "gp.password",
+      "type": "java.lang.String",
+      "sourceType": "com.Group3.pojo.GP"
+    },
+    {
+      "name": "gp.patients",
+      "type": "java.util.List<com.Group3.pojo.Patient>",
+      "sourceType": "com.Group3.pojo.GP"
+    },
+    {
+      "name": "gp.sex",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.Group3.pojo.GP"
+    }
+  ],
+  "hints": []
+}
