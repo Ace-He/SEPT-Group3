@@ -15,7 +15,7 @@ class profile extends StatefulWidget{
 
 Future<PatientModel> updateProfile(
     String firstName, String lastName, BuildContext context) async {
-  var Url = "http://localhost:8080/addemployee";
+  var Url = "http://localhost:8080/updateProfile";
   var response = await http.post(Url,
       headers: <String, String>{"Content-Type": "application/json"},
       body: jsonEncode(<String, String>{
