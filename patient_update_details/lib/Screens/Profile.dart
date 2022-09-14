@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:patient_update_details/Model/PatientModel.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class profile extends StatefulWidget{
   @override
@@ -8,12 +13,30 @@ class profile extends StatefulWidget{
 
 }
 
-class profileState extends State<profile>{
+Future<PatientModel> updateProfile(
+    String firstName, String lastName, BuildContext context) async {
+  var Url = "http://localhost:8080/addemployee";
+  var response = await http.post(Url,
+      headers: <String, String>{"Content-Type": "application/json"},
+      body: jsonEncode(<String, String>{
+        "firstName": firstName,
+        "lastName": lastName,
+      }));
 
-  void submit(){
-    print(firstController.text);
-    print(secondController.text);
-}
+  String responseString = response.body;
+  if (response.statusCode == 200) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext dialogContext) {
+        return MyAlertDialog(title: 'Backend Response', content: response.body);
+      },
+    );
+  }
+  throw new Exception(["Status Code != 200"]);
+  }
+
+class profileState extends State<profile>{
 
   final padding = 5.0;
   @override
@@ -72,7 +95,19 @@ class profileState extends State<profile>{
                       )
                   )
               ),
-              ElevatedButton(onPressed: submit, child: Text("Submit"),),
+              ElevatedButton(
+                  child: Text('Submit'),
+                  onPressed: () async {
+                    String firstName = firstController.text;
+                    String lastName = secondController.text;
+                    PatientModel patient =
+                    await updateProfile(firstName, lastName, context);
+                    firstController.text = '';
+                    secondController.text = '';
+                    setState(() {
+                      patient = patient;
+                    });
+                  })
             ]
           )
         )
@@ -80,4 +115,31 @@ class profileState extends State<profile>{
     );
   }
 
+}
+
+class MyAlertDialog extends StatelessWidget {
+  final String title;
+  final String content;
+  final List<Widget> actions;
+
+  MyAlertDialog({
+    required this.title,
+    required this.content,
+    this.actions = const [],
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text(
+        this.title,
+        style: Theme.of(context).textTheme.titleMedium,
+      ),
+      actions: this.actions,
+      content: Text(
+        this.content,
+        style: Theme.of(context).textTheme.bodyText1,
+      ),
+    );
+  }
 }

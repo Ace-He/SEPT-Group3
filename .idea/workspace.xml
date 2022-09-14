@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d68ac131-4755-45ab-a912-4cdb31ad1ae0" name="Changes" comment="Working out Navigation, next will test inputing data to Postman">
+    <list default="true" id="d68ac131-4755-45ab-a912-4cdb31ad1ae0" name="Changes" comment="Can receive formdata, now attempting to sent formdata to backend">
+      <change afterPath="$PROJECT_DIR$/patient_update_details/lib/Model/PatientModel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/patient_update_details/lib/Screens/Profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/patient_update_details/lib/Screens/Profile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient_update_details/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/patient_update_details/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient_update_details/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/patient_update_details/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +98,7 @@
       <workItem from="1661238534244" duration="2098000" />
       <workItem from="1661240942289" duration="2000" />
       <workItem from="1661241052660" duration="1671000" />
-      <workItem from="1663125063765" duration="4858000" />
+      <workItem from="1663125063765" duration="9121000" />
     </task>
     <task id="LOCAL-00001" summary="Main file added">
       <created>1661240690054</created>
@@ -131,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663128437101</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Can receive formdata, now attempting to sent formdata to backend">
+      <created>1663130122933</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1663130122933</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -153,7 +164,8 @@
     <MESSAGE value="Main file removed" />
     <MESSAGE value="Main file edit" />
     <MESSAGE value="Working out Navigation, next will test inputing data to Postman" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working out Navigation, next will test inputing data to Postman" />
+    <MESSAGE value="Can receive formdata, now attempting to sent formdata to backend" />
+    <option name="LAST_COMMIT_MESSAGE" value="Can receive formdata, now attempting to sent formdata to backend" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
