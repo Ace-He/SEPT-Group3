@@ -4,48 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d68ac131-4755-45ab-a912-4cdb31ad1ae0" name="Changes" comment="Main file edit">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_5_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_activation_jakarta_activation_1_2_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_mail_jakarta_mail_1_6_7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__jakarta_validation_jakarta_validation_api_2_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_12_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_agent_1_12_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ognl_ognl_3_1_26.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_attoparser_attoparser_2_0_5_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_validator_hibernate_validator_6_2_4_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_20_0_GA.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_4_3_Final.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_autoconfigure_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_configuration_processor_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_devtools_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_json_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_logging_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_mail_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_test_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_tomcat_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_web_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_test_autoconfigure_2_7_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_support_5_3_22.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_3_0_15_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_thymeleaf_thymeleaf_spring5_3_0_15_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_unbescape_unbescape_1_1_6_RELEASE.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SEPT_Group3/SEPT_Group3.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Telemedicine.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/patient_update_details/lib/Screens/Profile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="d68ac131-4755-45ab-a912-4cdb31ad1ae0" name="Changes" comment="Working out Navigation, next will test inputing data to Postman">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/patient_update_details/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/patient_update_details/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/patient_update_details/lib/Screens/Profile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/patient_update_details/lib/Screens/Profile.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +94,7 @@
       <workItem from="1661238534244" duration="2098000" />
       <workItem from="1661240942289" duration="2000" />
       <workItem from="1661241052660" duration="1671000" />
-      <workItem from="1663125063765" duration="3272000" />
+      <workItem from="1663125063765" duration="4858000" />
     </task>
     <task id="LOCAL-00001" summary="Main file added">
       <created>1661240690054</created>
@@ -156,7 +117,21 @@
       <option name="project" value="LOCAL" />
       <updated>1661336137929</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Working out Navigation, next will test inputing data to Postman">
+      <created>1663128423985</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1663128423985</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Working out Navigation, next will test inputing data to Postman">
+      <created>1663128437101</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1663128437101</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,7 +152,8 @@
     <MESSAGE value="Main file added" />
     <MESSAGE value="Main file removed" />
     <MESSAGE value="Main file edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Main file edit" />
+    <MESSAGE value="Working out Navigation, next will test inputing data to Postman" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working out Navigation, next will test inputing data to Postman" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
