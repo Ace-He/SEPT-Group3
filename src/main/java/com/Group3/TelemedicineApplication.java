@@ -16,12 +16,12 @@ public class TelemedicineApplication {
         SpringApplication.run(TelemedicineApplication.class, args);
     }
 
-    @Bean
-    public InternalResourceViewResolver setView() {
-        InternalResourceViewResolver res = new InternalResourceViewResolver();
-        res.setPrefix("/WEB-INF/jsp/");
-        res.setSuffix(".jsp");
-        return res;
-    }
+//    @Bean
+//    public InternalResourceViewResolver setView() {
+//        InternalResourceViewResolver res = new InternalResourceViewResolver();
+//        res.setPrefix("/WEB-INF/jsp/");
+//        res.setSuffix(".jsp");
+//        return res;
+//    }
 
 }

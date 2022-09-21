@@ -1,6 +1,6 @@
 package com.Group3.service.impl;
 
-import com.Group3.domain.NdPatient;
+import com.Group3.entity.NdPatient;
 import com.Group3.mapper.PatientMapper;
 import com.Group3.service.PatientService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;

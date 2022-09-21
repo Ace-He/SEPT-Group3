@@ -5,7 +5,7 @@ package com.Group3.controller;
 import cn.hutool.core.bean.BeanUtil;
 import com.Group3.common.api.ApiResult;
 import com.Group3.common.interceptor.AuthCheck;
-import com.Group3.domain.NdPatient;
+import com.Group3.entity.NdPatient;
 import com.Group3.param.PatientParam;
 import com.Group3.service.PatientService;
 import io.swagger.annotations.Api;
@@ -35,8 +35,8 @@ public class PatientController {
         BeanUtil.copyProperties(patient, ndPatient);
         if (flag == 1) {
             if (patientService.updateById(ndPatient))
-                return ApiResult.ok("修改信息成功");
-            return ApiResult.error("修改信息失败");
+                return ApiResult.ok("修改信息成功(Edit health information successfully)");
+            return ApiResult.error("修改信息失败(Edit health information fail)");
         } else {
             if (patientService.save(ndPatient))
                 return ApiResult.ok("添加信息成功");
@@ -55,8 +55,8 @@ public class PatientController {
         NdPatient ndPatient = new NdPatient();
         BeanUtil.copyProperties(patient, ndPatient);
         if (patientService.updateById(ndPatient))
-            return ApiResult.ok("修改患者状态成功");
-        return ApiResult.error("修改患者状态失败");
+            return ApiResult.ok("修改患者状态成功(Edit status successfully)");
+        return ApiResult.error("修改患者状态失败(Edit status fail)");
     }
 
 

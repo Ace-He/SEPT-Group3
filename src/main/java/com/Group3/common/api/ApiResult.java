@@ -7,12 +7,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @Getter
 @Setter
+//@ToString
 public class ApiResult<T> implements Serializable {
 
     @ApiModelProperty("响应码")

@@ -7,11 +7,11 @@ import com.Group3.common.util.EncryptUtils;
 import com.Group3.common.util.RedisUtils;
 import com.Group3.common.util.StringUtils;
 import com.Group3.common.vo.OnlineUser;
-import com.Group3.domain.NdGp;
-import com.Group3.domain.NdPatient;
-import com.Group3.domain.NdUser;
+import com.Group3.entity.NdGp;
+import com.Group3.entity.NdPatient;
+import com.Group3.entity.NdUser;
 import com.Group3.param.UserParam;
-import com.Group3.service.GpService;
+import com.Group3.service.GPService;
 import com.Group3.service.PatientService;
 import com.Group3.service.UserService;
 import com.Group3.vo.UserVo;
@@ -36,7 +36,7 @@ public class AuthService {
     private static Integer expiredTimeIn;
 
     private final UserService userService;
-    private final GpService gpService;
+    private final GPService gpService;
     private final PatientService patientService;
 
     @Value("${nd.security.token-expired-in}")

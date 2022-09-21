@@ -5,7 +5,7 @@ import com.Group3.common.bean.LocalUser;
 import com.Group3.common.exception.UnAuthenticatedException;
 import com.Group3.common.util.JwtToken;
 import com.Group3.common.util.RedisUtils;
-import com.Group3.domain.NdUser;
+import com.Group3.entity.NdUser;
 import com.Group3.param.UserParam;
 import com.Group3.service.impl.AuthService;
 import com.Group3.service.UserService;
