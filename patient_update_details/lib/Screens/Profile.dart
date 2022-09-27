@@ -43,6 +43,9 @@ class profileState extends State<profile>{
 
   TextEditingController firstController = TextEditingController();
   TextEditingController secondController = TextEditingController();
+  TextEditingController thirdController = TextEditingController();
+  TextEditingController fourthController = TextEditingController();
+  TextEditingController fifthController = TextEditingController();
 
   Widget build(BuildContext context) {
     TextStyle? textStyle = Theme.of(context).textTheme.subtitle2;
@@ -67,7 +70,7 @@ class profileState extends State<profile>{
                 // },
                 decoration: InputDecoration(
                   labelText: 'First Name',
-                  hintText: 'Enter your name',
+                  hintText: 'Update your first name',
                   labelStyle: textStyle,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0)
@@ -87,7 +90,7 @@ class profileState extends State<profile>{
                       // },
                       decoration: InputDecoration(
                           labelText: 'Last Name',
-                          hintText: 'Enter your name',
+                          hintText: 'Update your last name',
                           labelStyle: textStyle,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0)
@@ -95,20 +98,76 @@ class profileState extends State<profile>{
                       )
                   )
               ),
+              Padding(
+                  padding: EdgeInsets.only(top: padding, bottom: padding),
+                  child: TextFormField(
+                      style: textStyle,
+                      controller: thirdController,
+                      decoration: InputDecoration(
+                          labelText: 'Address',
+                          hintText: 'Update your address',
+                          labelStyle: textStyle,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0)
+                          )
+                      )
+                  )
+              ),
+              Padding(
+                  padding: EdgeInsets.only(top: padding, bottom: padding),
+                  child: TextFormField(
+                      style: textStyle,
+                      controller: fourthController,
+                      decoration: InputDecoration(
+                          labelText: 'Username',
+                          hintText: 'Update your username',
+                          labelStyle: textStyle,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0)
+                          )
+                      )
+                  )
+              ),
+          Padding(
+              padding: EdgeInsets.only(top: padding, bottom: padding),
+              child: TextFormField(
+                  style: textStyle,
+                  controller: fifthController,
+                  decoration: InputDecoration(
+                      labelText: 'Email',
+                      hintText: 'Update your email',
+                      labelStyle: textStyle,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0)
+                      )
+                  )
+              )
+          ),
               ElevatedButton(
                   child: Text('Submit'),
                   onPressed: () async {
                     String firstName = firstController.text;
                     String lastName = secondController.text;
-                    PatientModel patient =
-                    await updateProfile(firstName, lastName, context);
-                    firstController.text = '';
-                    secondController.text = '';
-                    setState(() {
-                      patient = patient;
-                    });
-                  })
-            ]
+                    String address = thirdController.text;
+                    String username = fourthController.text;
+                    String email = fifthController.text;
+
+                    print(firstName);
+                    print(lastName);
+                    print(address);
+                    print(username);
+                    print(email);
+
+
+                    // PatientModel patient =
+                    // await updateProfile(firstName, lastName, context);
+                    // firstController.text = '';
+                    // secondController.text = '';
+                    // setState(() {
+                    //   patient = patient;
+                    // });
+                  }
+              )]
           )
         )
       ),
