@@ -14,14 +14,20 @@ class profile extends StatefulWidget{
 }
 
 Future<PatientModel> updateProfile(
-    String firstName, String lastName, BuildContext context) async {
+    String firstName, String lastName, String address, String username,
+    String email, BuildContext context) async {
   var Url = "http://localhost:8080/addemployee";
   var response = await http.post(Url,
       headers: <String, String>{"Content-Type": "application/json"},
       body: jsonEncode(<String, String>{
         "firstName": firstName,
         "lastName": lastName,
+        "address" : address,
+        "username" : username,
+        "email" : email,
       }));
+
+  print(response.body);
 
   String responseString = response.body;
   if (response.statusCode == 200) {
@@ -51,7 +57,7 @@ class profileState extends State<profile>{
     TextStyle? textStyle = Theme.of(context).textTheme.subtitle2;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Text('Update Profile'),
       ),
       body: Form(
         child: Padding(
@@ -146,26 +152,24 @@ class profileState extends State<profile>{
               ElevatedButton(
                   child: Text('Submit'),
                   onPressed: () async {
-                    String firstName = firstController.text;
-                    String lastName = secondController.text;
-                    String address = thirdController.text;
-                    String username = fourthController.text;
-                    String email = fifthController.text;
 
-                    print(firstName);
-                    print(lastName);
-                    print(address);
-                    print(username);
-                    print(email);
+                  String firstName = firstController.text;
+                  String lastName = secondController.text;
+                  String address = thirdController.text;
+                  String username = fourthController.text;
+                  String email = fifthController.text;
 
 
-                    // PatientModel patient =
-                    // await updateProfile(firstName, lastName, context);
-                    // firstController.text = '';
-                    // secondController.text = '';
-                    // setState(() {
-                    //   patient = patient;
-                    // });
+                    PatientModel patient =
+                    await updateProfile(firstName, lastName, address, username, email, context);
+                    firstController.text = '';
+                    secondController.text = '';
+                    thirdController.text = '';
+                    fourthController.text = '';
+                    fifthController.text = '';
+                    setState(() {
+                      patient = patient;
+                    });
                   }
               )]
           )
