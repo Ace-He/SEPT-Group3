@@ -14,14 +14,20 @@ class profile extends StatefulWidget{
 }
 
 Future<PatientModel> updateProfile(
-    String firstName, String lastName, BuildContext context) async {
-  var Url = "http://localhost:8080/updateProfile";
+    String firstName, String lastName, String address, String username,
+    String email, BuildContext context) async {
+  var Url = "http://localhost:8080/addemployee";
   var response = await http.post(Url,
       headers: <String, String>{"Content-Type": "application/json"},
       body: jsonEncode(<String, String>{
         "firstName": firstName,
         "lastName": lastName,
+        "address" : address,
+        "username" : username,
+        "email" : email,
       }));
+
+  print(response.body);
 
   String responseString = response.body;
   if (response.statusCode == 200) {
@@ -43,12 +49,15 @@ class profileState extends State<profile>{
 
   TextEditingController firstController = TextEditingController();
   TextEditingController secondController = TextEditingController();
+  TextEditingController thirdController = TextEditingController();
+  TextEditingController fourthController = TextEditingController();
+  TextEditingController fifthController = TextEditingController();
 
   Widget build(BuildContext context) {
     TextStyle? textStyle = Theme.of(context).textTheme.subtitle2;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Text('Update Profile'),
       ),
       body: Form(
         child: Padding(
@@ -67,7 +76,7 @@ class profileState extends State<profile>{
                 // },
                 decoration: InputDecoration(
                   labelText: 'First Name',
-                  hintText: 'Enter your name',
+                  hintText: 'Update your first name',
                   labelStyle: textStyle,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0)
@@ -87,7 +96,7 @@ class profileState extends State<profile>{
                       // },
                       decoration: InputDecoration(
                           labelText: 'Last Name',
-                          hintText: 'Enter your name',
+                          hintText: 'Update your last name',
                           labelStyle: textStyle,
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(5.0)
@@ -95,20 +104,74 @@ class profileState extends State<profile>{
                       )
                   )
               ),
+              Padding(
+                  padding: EdgeInsets.only(top: padding, bottom: padding),
+                  child: TextFormField(
+                      style: textStyle,
+                      controller: thirdController,
+                      decoration: InputDecoration(
+                          labelText: 'Address',
+                          hintText: 'Update your address',
+                          labelStyle: textStyle,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0)
+                          )
+                      )
+                  )
+              ),
+              Padding(
+                  padding: EdgeInsets.only(top: padding, bottom: padding),
+                  child: TextFormField(
+                      style: textStyle,
+                      controller: fourthController,
+                      decoration: InputDecoration(
+                          labelText: 'Username',
+                          hintText: 'Update your username',
+                          labelStyle: textStyle,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0)
+                          )
+                      )
+                  )
+              ),
+          Padding(
+              padding: EdgeInsets.only(top: padding, bottom: padding),
+              child: TextFormField(
+                  style: textStyle,
+                  controller: fifthController,
+                  decoration: InputDecoration(
+                      labelText: 'Email',
+                      hintText: 'Update your email',
+                      labelStyle: textStyle,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0)
+                      )
+                  )
+              )
+          ),
               ElevatedButton(
                   child: Text('Submit'),
                   onPressed: () async {
-                    String firstName = firstController.text;
-                    String lastName = secondController.text;
+
+                  String firstName = firstController.text;
+                  String lastName = secondController.text;
+                  String address = thirdController.text;
+                  String username = fourthController.text;
+                  String email = fifthController.text;
+
+
                     PatientModel patient =
-                    await updateProfile(firstName, lastName, context);
+                    await updateProfile(firstName, lastName, address, username, email, context);
                     firstController.text = '';
                     secondController.text = '';
+                    thirdController.text = '';
+                    fourthController.text = '';
+                    fifthController.text = '';
                     setState(() {
                       patient = patient;
                     });
-                  })
-            ]
+                  }
+              )]
           )
         )
       ),
