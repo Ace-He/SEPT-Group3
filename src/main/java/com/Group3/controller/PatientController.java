@@ -23,7 +23,7 @@ public class PatientController {
     private final PatientService patientService;
 
     /**
-     * @param flag    0：添加，1：修改
+     * @param flag    0：add，1：modify
      * @param patient
      * @return
      */

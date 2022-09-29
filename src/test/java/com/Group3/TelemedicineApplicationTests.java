@@ -47,7 +47,7 @@ class A1projectApplicationTests {
 
     @Test
     void registerSuccessTest() throws IOException {
-        String email = "98@qq.com";
+        String email = "9@qq.com";
         verificationCodeController.image(email);
         String codeKey = "code_" + email;
         String code = (String) redisUtils.get(codeKey);
