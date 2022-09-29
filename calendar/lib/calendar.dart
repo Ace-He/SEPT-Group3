@@ -35,7 +35,7 @@ class _CalendarState extends State<Calendar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("ESTech Calendar"),
+        title: Text("Booking Calendar"),
         centerTitle: true,
       ),
       body: Column(
@@ -146,7 +146,9 @@ class _CalendarState extends State<Calendar> {
                   _eventController.clear();
                   setState((){});
                   return;
+                 
                 },
+               
               ),
             ],
           ),
