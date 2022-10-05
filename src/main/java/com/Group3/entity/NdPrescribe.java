@@ -1,5 +1,6 @@
 package com.Group3.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
@@ -9,15 +10,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("nd_patient")
-public class NdPatient {
+@TableName("nd_prescribe")
+public class NdPrescribe {
 
-    @TableId
+    @TableId(type = IdType.AUTO)
+    private Long id;
+    private String dids;
     private Long pid;
-    private Long uid;
-    private Long height;
-    private Long weight;
-    private String allergy;
-    private String medicalHistory;
-    private String status;
+    private Long gid;
 }

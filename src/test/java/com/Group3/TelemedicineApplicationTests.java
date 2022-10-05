@@ -2,6 +2,7 @@ package com.Group3;
 
 
 import com.Group3.common.api.ApiResult;
+import com.Group3.common.util.DateUtil;
 import com.Group3.common.util.RedisUtils;
 import com.Group3.controller.AuthController;
 import com.Group3.controller.GPController;
@@ -11,21 +12,17 @@ import com.Group3.param.GPQueryParam;
 import com.Group3.param.PatientParam;
 import com.Group3.param.UserRegisterParam;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpEntity;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -130,6 +127,14 @@ class A1projectApplicationTests {
 
         ApiResult getGP = GPController.listGp(GP);
         System.out.println(getGP);
+    }
+
+
+    @Test
+    public void test() throws ParseException {
+        System.out.println(new Date());
+        System.out.println(DateUtil.addTime(new Date(), 30));
+        System.out.println(DateUtil.subtractTime(new Date(), 30));
     }
 
 

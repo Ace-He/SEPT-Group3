@@ -9,5 +9,6 @@ public class Constants {
     public static final String FILE = "E:/yixiexiaoxiaodeDemo/sptingboot/file/";
     public static final long VERIFY_CODE_OUT_TIME = 60000L;
     public static final int ONE_DAY_SECONDS = 86400;
+    public static final long ONE_MINUTE = 1000 * 60;
 
 }

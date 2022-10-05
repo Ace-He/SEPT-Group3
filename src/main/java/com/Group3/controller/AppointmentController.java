@@ -57,4 +57,16 @@ public class AppointmentController {
     }
 
 
+    @ApiOperation("取消预约")
+    @PostMapping("/del")
+    public ApiResult del(@RequestBody AppointmentParam param) {
+        LambdaQueryWrapper<NdAppointment> wrapper = Wrappers.<NdAppointment>lambdaQuery();
+        wrapper.eq(NdAppointment::getGid, param.getGid()).eq(NdAppointment::getPid, param.getPid());
+        if (!appointmentService.remove(wrapper)) {
+            return ApiResult.error().setMsg("取消预约失败");
+        }
+        return ApiResult.ok().setMsg("取消预约成功");
+    }
+
+
 }

@@ -13,7 +13,7 @@ import java.util.Date;
 @TableName("nd_user")
 public class NdUser {
 
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long uid;
     private String userName;
     private String email;
