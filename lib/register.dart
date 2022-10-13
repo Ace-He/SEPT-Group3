@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'login.dart';
@@ -16,30 +18,30 @@ class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   late String groupValue = "sex";
   late bool isRegister = false;
-  late TextEditingController firstNameController = TextEditingController();
-  late TextEditingController lastNameController = TextEditingController();
+  late TextEditingController codeController = TextEditingController();
+  late TextEditingController userNameController = TextEditingController();
   late TextEditingController emailController = TextEditingController();
   late TextEditingController ageController = TextEditingController();
   late TextEditingController passwordController = TextEditingController();
 
   registerMethod() async {
     Map<String, dynamic> data = {
-      "first name": firstNameController.text,
-      "last name": lastNameController.text,
+      "code": codeController.text,
+      "userName": userNameController.text,
       "email": emailController.text,
       "sex": groupValue,
-      "age": ageController.text,
-      "flag": "2",
+      "age": int.parse(ageController.text),
       "password": passwordController.text,
+      "userType": 2,
     };
 
     print(data);
     Response response = await Dio().post(
-      "http://127.0.0.1:8083/register",
-      data: data,
+      "http://127.0.0.1:8081/nd/register",
+      data: jsonEncode(data),
     );
     print("http parameters start：");
-    print(data);
+    print(jsonEncode(data));
     print("http parameters end：");
 
     print("http request start");
@@ -58,6 +60,13 @@ class _RegisterPageState extends State<RegisterPage> {
         isRegister = false;
       });
     }
+  }
+
+  getCodeMethod() async{
+    Response response = await Dio().get(
+      "http://localhost:8081/nd/verify/image/00@qq.com"
+    );
+    codeController.text = response.data;
   }
 
   @override
@@ -88,26 +97,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     children: [
                       Expanded(
                         child: TextFormField(
-                          controller: firstNameController,
+                          controller: userNameController,
                           maxLines: 1,
                           decoration: InputDecoration(
-                            hintText: 'First name',
-                            prefixIcon: const Icon(Icons.person),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                        child: TextFormField(
-                          controller: lastNameController,
-                          maxLines: 1,
-                          decoration: InputDecoration(
-                            hintText: 'Last name',
+                            hintText: 'Full Name',
                             prefixIcon: const Icon(Icons.person),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
@@ -118,7 +111,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                   ),
                   const SizedBox(
-                    height: 20,
+                    width: 20,
                   ),
                   TextFormField(
                     controller: emailController,
@@ -196,6 +189,45 @@ class _RegisterPageState extends State<RegisterPage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: codeController,
+                            maxLines: 1,
+                            decoration: InputDecoration(
+                              hintText: 'Code',
+                              prefixIcon: const Icon(Icons.code),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              getCodeMethod();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
+                            ),
+                            child: const Text(
+                              'Get Code',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]
                   ),
                   const SizedBox(
                     height: 20,

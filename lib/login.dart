@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
@@ -17,18 +19,21 @@ class _LoginPageState extends State<LoginPage> {
   var rememberValue = false;
   late TextEditingController emailController = TextEditingController();
   late TextEditingController passwordController = TextEditingController();
+  late TextEditingController codeController = TextEditingController();
 
   loginMethod() async {
     Map<String, dynamic> data = {
       "email": emailController.text,
       "password": passwordController.text,
+      "code": codeController.text,
+      "userType": 2,
     };
     Response response = await Dio().post(
-      "http://127.0.0.1:8083/login",
-      data: data,
+      "http://127.0.0.1:8081/nd/login",
+      data: jsonEncode(data),
     );
     print("http parameters start：");
-    print(data);
+    print(jsonEncode(data));
     print("http parameters end：");
 
     print("http request start");
@@ -42,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
       map = response.data;
     }
 
+
     // Update when merged with home page
     // if (map["code"].toString() == "200")
     // {
@@ -52,6 +58,13 @@ class _LoginPageState extends State<LoginPage> {
     //     ),
     //   );
     // }
+  }
+
+  getCodeMethod() async{
+    Response response = await Dio().get(
+        "http://localhost:8081/nd/verify/image/00@qq.com"
+    );
+    codeController.text = response.data;
   }
 
   @override
@@ -82,6 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                     validator: (value) => EmailValidator.validate(value!)
                         ? null
                         : "Please enter a valid email",
+                    controller: emailController,
                     maxLines: 1,
                     decoration: InputDecoration(
                       hintText: 'Enter your email',
@@ -101,6 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                       return null;
                     },
+                    controller: passwordController,
                     maxLines: 1,
                     obscureText: true,
                     decoration: InputDecoration(
@@ -122,6 +137,45 @@ class _LoginPageState extends State<LoginPage> {
                       });
                     },
                     controlAffinity: ListTileControlAffinity.leading,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                      children: [
+                        Expanded(
+                          child: TextFormField(
+                            controller: codeController,
+                            maxLines: 1,
+                            decoration: InputDecoration(
+                              hintText: 'Code',
+                              prefixIcon: const Icon(Icons.code),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              getCodeMethod();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.fromLTRB(40, 15, 40, 15),
+                            ),
+                            child: const Text(
+                              'Get Code',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]
                   ),
                   const SizedBox(
                     height: 20,
