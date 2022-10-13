@@ -1,0 +1,77 @@
+server:
+  port: 8081
+  servlet:
+    context-path: "/nd"
+    encoding:
+      charset: UTF-8
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    #druid Proprietary configuration of data sources
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+
+    #Configure filters for monitoring statistical interception, stat: monitoring statistics, log4j: logging, and wall: defense against sql injection
+    #If an error is allowed，java.lang.ClassNotFoundException: org.apache.Log4j.Properity
+    #Then import the log4j dependency
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionoProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500\
+
+  redis:
+    host: localhost # Redis Server address
+    database: 0 # Redis database index (default is 0)
+    port: 6379 # Redis server connection port
+    password: # Redis server connection password (default: empty)
+    jedis:
+      pool:
+        max-active: 8 # Connection pool maximum number of connections
+        max-wait: -1ms # Connection pool maximum blocking wait time (negative values indicate no limit)
+        max-idle: 8 # Maximum free connections in the connection pool
+        min-idle: 0 # Minimum free connections in the connection pool
+    timeout: 3000ms # Connection timeout (ms)
+
+redis:
+  key:
+    prefix:
+      authCode: "portal:authCode:"
+    expire:
+      authCode: 6000 # Verification code expiration time
+
+mybatis-plus:
+  check-config-location: true
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:mapper/*Mapper.xml
+
+jwt:
+  header: Authorization
+  # The token prefix
+  token-start-with: Token
+  online-key: nd
+
+nd:
+  security:
+    jwt-key: nd
+    token-expired-in: 604800
