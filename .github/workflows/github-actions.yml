@@ -1,9 +1,15 @@
 name: GitHub Actions Demo
 on:
   push:
-    branches: [ "main" ]
+    branches: 
+    - main
+    - back-end/*
+    
   pull_request:
-    branches: [ "main" ]
+    branches:
+    - main
+    - back-end/*
+    
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
