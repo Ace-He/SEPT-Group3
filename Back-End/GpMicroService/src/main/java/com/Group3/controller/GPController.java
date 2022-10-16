@@ -43,6 +43,7 @@ public class GPController {
     @Resource
     private RabbitMQService rabbitMQService;
 
+    @AuthCheck
     @ApiOperation("Get all information about GP")
     @GetMapping("/listGp")
     public ApiResult listGp(GPQueryParam param) {
@@ -55,8 +56,8 @@ public class GPController {
      * @param flag 0 is available，1 is busy
      * @return ApiResult
      */
-    @ApiOperation("Modify the doctor's working status")
     @AuthCheck
+    @ApiOperation("Modify the doctor's working status")
     @PostMapping("/edit/availability/{flag}")
     public ApiResult editFree(@PathVariable int flag) {
         Long uid = LocalUser.getUser().getUid();
@@ -76,12 +77,14 @@ public class GPController {
     }
 
     //The GP's message sending interface
+    @AuthCheck
     @PostMapping("/sendMsg")
     public String GpSendMsg(@RequestParam(name = "msg") String msg) throws Exception {
         return rabbitMQService.sendMsg(msg);
     }
 
     //The message receiving interface for the GP
+    @AuthCheck
     @RabbitHandler
     public void process(Map map){
         System.out.println("GP："+ map.toString());

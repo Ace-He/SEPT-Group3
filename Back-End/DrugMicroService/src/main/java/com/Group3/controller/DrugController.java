@@ -3,6 +3,7 @@ package com.Group3.controller;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import com.Group3.common.api.ApiResult;
+import com.Group3.common.interceptor.AuthCheck;
 import com.Group3.entity.NdAppointment;
 import com.Group3.entity.NdDrug;
 import com.Group3.entity.NdPrescribe;
@@ -39,6 +40,7 @@ public class DrugController {
      * @param param
      * @return
      */
+    @AuthCheck
     @ApiOperation("A doctor prescribes medication for an appointment or modifies the medication")
     @PostMapping("/prescribe/{dids}")
     public ApiResult prescribe(@PathVariable(value = "dids") String dids, @RequestBody DrugParam param) {
@@ -62,13 +64,14 @@ public class DrugController {
     }
 
 
+    @AuthCheck
     @ApiOperation("Access to all medicines")
     @GetMapping("/list")
     public ApiResult drugList() {
         List<NdDrug> list = drugService.list();
         return ApiResult.ok(list);
     }
-
+    @AuthCheck
     @ApiOperation("The patient checks the medication prescribed to the doctor, or the doctor checks the medication prescribed to the patient")
     @GetMapping("/getByPidOrGid")
     public ApiResult getByPidOrGid(DrugParam param) {
@@ -96,6 +99,7 @@ public class DrugController {
      * @param id prescribe id
      * @return ApiResult
      */
+    @AuthCheck
     @ApiOperation("Remove medications prescribed by doctors")
     @PostMapping("/del/{id}")
     public ApiResult del(@PathVariable Long id) {

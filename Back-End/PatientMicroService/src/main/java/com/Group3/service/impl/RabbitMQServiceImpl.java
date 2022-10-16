@@ -32,7 +32,7 @@ public class RabbitMQServiceImpl implements RabbitMQService {
             map.put("send time： ", sendTime);
             map.put("message: ", msg);
             rabbitTemplate.convertAndSend(RabbitMQConfig.RABBITMQ_DEMO_DIRECT_EXCHANGE, RabbitMQConfig.RABBITMQ_DEMO_DIRECT_ROUTING, map);
-            return "Successfully sent!";
+            return "Successfully sent! \nPatient: " + map.toString();
         }catch (Exception e){
             e.printStackTrace();
             e.toString();

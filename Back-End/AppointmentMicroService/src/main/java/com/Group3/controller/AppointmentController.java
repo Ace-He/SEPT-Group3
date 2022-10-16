@@ -3,6 +3,7 @@ package com.Group3.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.Group3.common.api.ApiResult;
+import com.Group3.common.interceptor.AuthCheck;
 import com.Group3.common.util.DateUtil;
 import com.Group3.entity.NdAppointment;
 import com.Group3.param.AppointmentParam;
@@ -33,6 +34,7 @@ public class AppointmentController {
 
     @ApiOperation("Make an appointment with a GP")
     @PostMapping("/add")
+    @AuthCheck
     public ApiResult add(@RequestBody AppointmentParam param) {
         if (param.getEndTime().getTime() < param.getStartTime().getTime()) {
             return ApiResult.error("Appointment end time should be greater than the start time");
@@ -47,24 +49,25 @@ public class AppointmentController {
         wrapper.eq(NdAppointment::getPid, param.getPid()).eq(NdAppointment::getGid, param.getGid()).eq(NdAppointment::getObsolete, 0);
         List<NdAppointment> list = appointmentService.list(wrapper);
         if (list.size() > 0) {
-            return ApiResult.error("Appointment made, if you need to change your Appointment, please cancel the previous Appointment");
+            return ApiResult.error("Appointment exist, if you need to change your Appointment, please cancel the previous Appointment");
         }
         NdAppointment ndAppointment = new NdAppointment();
         BeanUtil.copyProperties(param, ndAppointment);
         appointmentService.save(ndAppointment);
-        return ApiResult.ok("Appointment Success");
+        return ApiResult.ok("Add appointment success");
     }
 
 
     @ApiOperation("Cancel Appointment")
-    @PostMapping("/del")
-    public ApiResult del(@RequestBody AppointmentParam param) {
+    @PostMapping("/cancel")
+    @AuthCheck
+    public ApiResult cancel(@RequestBody AppointmentParam param) {
         LambdaQueryWrapper<NdAppointment> wrapper = Wrappers.<NdAppointment>lambdaQuery();
         wrapper.eq(NdAppointment::getGid, param.getGid()).eq(NdAppointment::getPid, param.getPid());
         if (!appointmentService.remove(wrapper)) {
-            return ApiResult.error().setMsg("Failed to cancel reservation");
+            return ApiResult.error("Failed to cancel reservation");
         }
-        return ApiResult.ok().setMsg("Appointment cancellation success");
+        return ApiResult.ok("Appointment cancellation success");
     }
 
 

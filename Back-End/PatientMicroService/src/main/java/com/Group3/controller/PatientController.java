@@ -3,12 +3,14 @@ package com.Group3.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.Group3.common.api.ApiResult;
+import com.Group3.common.bean.LocalUser;
 import com.Group3.common.config.RabbitMQConfig;
 import com.Group3.common.interceptor.AuthCheck;
 import com.Group3.entity.NdPatient;
 import com.Group3.param.PatientParam;
 import com.Group3.service.PatientService;
 import com.Group3.service.RabbitMQService;
+import com.Group3.vo.UserVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 @Api(value = "Patient MicroService")
@@ -34,6 +37,8 @@ public class PatientController {
 
     @Resource
     private RabbitMQService rabbitMQService;
+
+
 
     /**
      * @param flag    0：add，1：modify
@@ -59,14 +64,15 @@ public class PatientController {
 
     /**
      *
-     * @param Separate multiple status attributes in patient with commas (,)
-     * @return
+     * @param patient  multiple status attributes in patient with commas (,)
+     * @return ApiResult
      */
     @AuthCheck
     @ApiOperation("Modify patient status")
     @PostMapping("/edit/status")
     public ApiResult editStatus(@RequestBody PatientParam patient) {
         NdPatient ndPatient = new NdPatient();
+        //patient.setPid(LocalUser.getPatient().getPid());
         BeanUtil.copyProperties(patient, ndPatient);
         if (patientService.updateById(ndPatient))
             return ApiResult.ok("Edit status successfully");
@@ -74,11 +80,13 @@ public class PatientController {
     }
 
 
+
     //The message sending interface for the patient
     @PostMapping("/sendMsg")
     public String sendMsg(@RequestParam(name = "msg") String msg) throws Exception {
         return rabbitMQService.sendMsg(msg);
     }
+
 
     //The message receiving interface for the patient
     @RabbitHandler

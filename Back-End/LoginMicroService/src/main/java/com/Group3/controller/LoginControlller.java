@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-@Api(value = "Verification")
+@Api(value = "Login MicroService")
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class LoginControlller {
