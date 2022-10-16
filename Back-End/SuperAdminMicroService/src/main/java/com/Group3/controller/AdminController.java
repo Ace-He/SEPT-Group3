@@ -34,7 +34,7 @@ public class AdminController {
     @ApiOperation("Get all GP's information")
     @GetMapping("/gpList")
     public ApiResult listGp(GPQueryParam param) {
-        if(LocalUser.getUser().getUserType() != 0)return ApiResult.error().setMsg("Please log in as an Admin!");
+        if(LocalUser.getUser().getUserType() != 0)return ApiResult.error("Please log in as an Admin!");
         List<GPVo> list = gpService.listGp(param);
         return ApiResult.ok(list);
     }
