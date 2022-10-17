@@ -1,5 +1,6 @@
 package com.Group3;
 
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,24 +13,30 @@ import javax.inject.Inject;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class LoginMicroServiceApplicationTests {
+public class NotificationTest {
 
     @Inject
     private MockMvc mockMvc;
 
 
     @Test
-    public void login_success() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/login")).
-                andExpect(MockMvcResultMatchers.status().isOk()).
-                andDo(MockMvcResultHandlers.print()).andReturn();
-    }
-
-    @Test
-    public void login_fail() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/login/user")).
+    public void getAppointmentNotifs_fail() throws Exception{   //needs jwt token
+        mockMvc.perform(MockMvcRequestBuilders.get("/notification/getAppointment")).
                 andExpect(MockMvcResultMatchers.status().is(404)).
                 andDo(MockMvcResultHandlers.print()).andReturn();
     }
 
+    @Test
+    public void getDrugNotifs_fail() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/notification/getDrug")).
+                andExpect(MockMvcResultMatchers.status().is(404)).
+                andDo(MockMvcResultHandlers.print()).andReturn();
+    }
+
+    @Test
+    public void deleteNotifications_success() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/notification/delById/1")).
+                andExpect(MockMvcResultMatchers.status().is(405)).   //method should be post
+                andDo(MockMvcResultHandlers.print()).andReturn();
+    }
 }

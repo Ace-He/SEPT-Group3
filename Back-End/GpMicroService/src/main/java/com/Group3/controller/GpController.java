@@ -25,7 +25,6 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-
 @Api(value = "GP MicroService")
 @RestController
 @RequestMapping("/gp")
@@ -46,7 +45,6 @@ public class GpController {
         return ApiResult.ok(list);
     }
 
-
     /**y
      * @param flag 0 is available，1 is not available
      * @return ApiResult
@@ -55,7 +53,6 @@ public class GpController {
     @ApiOperation("Modify the gp's working status")
     @PostMapping("/edit/availability/{flag}")
     public ApiResult editAvailability(@PathVariable int flag) {
-
         if (!gpService.isGpLogin())
             return ApiResult.error("Only doctors can modify their status");
 
@@ -64,21 +61,6 @@ public class GpController {
         }else{
             return ApiResult.ok("Edit successfully!");
         }
-
-//        Long uid = LocalUser.getUser().getUid();
-//
-//        NdGp ndGp = gpService.getOne(Wrappers.<NdGp>lambdaQuery().eq(NdGp::getUid, uid));
-//        boolean b = ObjectUtil.isNotEmpty(ndGp);
-//        if ((flag == 0 || flag == 1) && b) {
-//            LambdaUpdateWrapper<NdGp> wrapper = new LambdaUpdateWrapper<>();
-//            wrapper.eq(NdGp::getUid, uid);
-//            wrapper.set(NdGp::getIsFree, flag);
-//            gpService.update(wrapper);
-//            return ApiResult.ok();
-//        }
-//        if(!b)
-//            return ApiResult.error("Only doctors can modify their status");
-//        return ApiResult.error("Parameter error");
     }
 
     //The GP's message sending interface

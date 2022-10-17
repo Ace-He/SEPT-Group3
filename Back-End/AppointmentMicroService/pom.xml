@@ -102,6 +102,13 @@
             <version>1.21</version>
             <scope>compile</scope>
         </dependency>
+
+        <!--javax-->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
     </dependencies>
 
 

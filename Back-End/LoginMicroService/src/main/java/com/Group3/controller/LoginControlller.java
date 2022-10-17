@@ -38,47 +38,15 @@ public class LoginControlller {
     @ApiOperation("login")
     @PostMapping(value = "/login")
     public ApiResult login(@RequestBody @Validated UserParam user, HttpServletRequest request) {
-//        Object codeObj = redisUtil.get("code_" + user.getEmail());
-//        if (ObjectUtil.isEmpty(codeObj)) {
-//            return ApiResult.error().message("Please get the verification code first!");
-//        }
-//        String code = codeObj.toString();
-//        if (!StringUtils.equals(code, user.getCode())) {
-//            return ApiResult.error().message("Verification code error!");
-//        }
         if (!loginService.isCorrectVerifyCode(user))
             return ApiResult.error().message("The verification code is wrong!");
 
-//        LambdaQueryWrapper<NdUser> wrapper = Wrappers.<NdUser>lambdaQuery().eq(NdUser::getEmail, user.getEmail());
-//
-//        NdUser NdUser = userService.getOne(wrapper, false);
-//
-//        if (ObjectUtil.isEmpty(NdUser)) {
-//            return ApiResult.error().message("The account doesn't exist!");
-//        }
         if (!loginService.isValidAccount(user))
             return ApiResult.error().message("This account doesn't exist!");
 
-//        String pwd = SecureUtil.md5(user.getPassword());
-//        if (!pwd.equals(NdUser.getPassword())) {
-//            return ApiResult.error().message("Wrong password!");
-//        }
         if (!loginService.isCorrectPwd(user))
             return ApiResult.error().message("Wrong password!");
 
-//        String token = JwtToken.makeToken(NdUser.getUid(), NdUser.getUserName());
-//        String expiresTimeStr = JwtToken.getExpireTime(token);//Get Expiration Time
-//
-//        // Save online information
-//        authService.save(NdUser, token, request, user.getRememberMe());
-//        Object userInfo = authService.getUserInfo(user, NdUser);
-//
-//        // Return token and user information
-//        Map<String, Object> map = new HashMap<>(2) {{
-//            put("token", token);
-//            put("expires_time", expiresTimeStr);
-//            put("userinfo", userInfo);
-//        }};
         Map<String, Object> userInformation = loginService.login(user, request);
 
         return ApiResult.ok().data(userInformation);

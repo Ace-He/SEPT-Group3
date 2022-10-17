@@ -2,6 +2,7 @@ package com.Group3.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.Group3.common.api.ApiResult;
+import com.Group3.common.bean.LocalUser;
 import com.Group3.entity.NdPatient;
 import com.Group3.mapper.PatientMapper;
 import com.Group3.param.PatientParam;
@@ -15,6 +16,8 @@ public class PatientServiceImpl extends ServiceImpl<PatientMapper, NdPatient> im
     public boolean editInformation(Integer flag, PatientParam patient) {
         NdPatient ndPatient = new NdPatient();
         BeanUtil.copyProperties(patient, ndPatient);
+        Long uid = LocalUser.getUser().getUid();
+        ndPatient.setUid(uid);
 
         if (flag != 1 && flag != 0)
             return false;

@@ -12,22 +12,30 @@ import javax.inject.Inject;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class LoginMicroServiceApplicationTests {
+public class PatientControllerTest {
 
     @Inject
     private MockMvc mockMvc;
 
-
     @Test
-    public void login_success() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/login")).
-                andExpect(MockMvcResultMatchers.status().isOk()).
+    public void editHealthInfo_fail() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/patient/edit/info/")).
+                andExpect(MockMvcResultMatchers.status().is(404)).
                 andDo(MockMvcResultHandlers.print()).andReturn();
     }
 
+
     @Test
-    public void login_fail() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/login/user")).
+    public void editStatus_fail() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/patient/edit/status")).  // method should be post
+                andExpect(MockMvcResultMatchers.status().is(405)).
+                andDo(MockMvcResultHandlers.print()).andReturn();
+    }
+
+
+    @Test
+    public void sendMsg_fail() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.post("/patient/sendMsg/4")).
                 andExpect(MockMvcResultMatchers.status().is(404)).
                 andDo(MockMvcResultHandlers.print()).andReturn();
     }

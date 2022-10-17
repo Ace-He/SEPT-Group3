@@ -12,24 +12,40 @@ import javax.inject.Inject;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class LoginMicroServiceApplicationTests {
+public class AppointmentControllerTest {
 
     @Inject
     private MockMvc mockMvc;
 
 
     @Test
-    public void login_success() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/login")).
+    public void addAppointment_success() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/appointment/add")).
                 andExpect(MockMvcResultMatchers.status().isOk()).
                 andDo(MockMvcResultHandlers.print()).andReturn();
     }
 
     @Test
-    public void login_fail() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/login/user")).
+    public void addAppointment_fail() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/appointmentAdd")).
                 andExpect(MockMvcResultMatchers.status().is(404)).
                 andDo(MockMvcResultHandlers.print()).andReturn();
     }
+
+    @Test
+    public void cancelAppointment_success() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/appointment/cancel")).
+                andExpect(MockMvcResultMatchers.status().isOk()).
+                andDo(MockMvcResultHandlers.print()).andReturn();
+    }
+
+    @Test
+    public void cancelAppointment_fail() throws Exception{
+        mockMvc.perform(MockMvcRequestBuilders.get("/appointment/delete")).
+                andExpect(MockMvcResultMatchers.status().is(404)).
+                andDo(MockMvcResultHandlers.print()).andReturn();
+    }
+
+
 
 }

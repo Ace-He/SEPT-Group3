@@ -28,9 +28,11 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private final PatientService patientService;
+    @Autowired
+    PatientService patientService;
 
-    private final GpService gpService;
+    @Autowired
+    GpService gpService;
 
     @Autowired
     SuperAdminService  superAdminService;
