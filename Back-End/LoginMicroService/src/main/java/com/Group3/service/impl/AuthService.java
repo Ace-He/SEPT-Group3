@@ -10,11 +10,12 @@ import com.Group3.entity.NdGp;
 import com.Group3.entity.NdPatient;
 import com.Group3.entity.NdUser;
 import com.Group3.param.UserParam;
-import com.Group3.service.GPService;
+import com.Group3.service.GpService;
 import com.Group3.service.PatientService;
 import com.Group3.vo.UserVo;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +30,7 @@ import java.util.Date;
 public class AuthService {
     private final RedisUtils redisUtils;
     private static Integer expiredTimeIn;
-    private final GPService gpService;
+    private final GpService gpService;
     private final PatientService patientService;
 
     @Value("${nd.security.token-expired-in}")

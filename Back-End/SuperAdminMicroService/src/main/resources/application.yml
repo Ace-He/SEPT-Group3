@@ -1,0 +1,45 @@
+server:
+  port: 8088
+  servlet:
+    context-path: "/nd"
+    encoding:
+      charset: UTF-8
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  check-config-location: true
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:mapper/*Mapper.xml
+
+
+# file storage path
+file:
+  path: E:\Computer science\Y3 S1\Software Engineering Process and Tools\A1\SEPT-Group3\avator
+  avatar: E:\Computer science\Y3 S1\Software Engineering Process and Tools\A1\SEPT-Group3\file
+  # The file size /m
+  maxSize: 100
+  avatarMaxSize: 5
+
+jwt:
+  header: Authorization
+  # The token prefix
+  token-start-with: Bearer
+  online-key: nd
+
+nd:
+  security:
+    jwt-key: nd
+    token-expired-in: 604800
