@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,9 +31,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DrugController {
 
-    private final PrescribeService prescribeService;
-    private final DrugService drugService;
-    private final AppointmentService appointmentService;
+    @Autowired
+    DrugService drugService;
+
 
 
     /**
@@ -41,26 +42,31 @@ public class DrugController {
      * @return
      */
     @AuthCheck
-    @ApiOperation("A doctor prescribes medication for an appointment or modifies the medication")
+    @ApiOperation("A doctor prescribes drug for an appointment or modifies the drug")
     @PostMapping("/prescribe/{dids}")
     public ApiResult prescribe(@PathVariable(value = "dids") String dids, @RequestBody DrugParam param) {
-        LambdaQueryWrapper<NdAppointment> wrapper = Wrappers.<NdAppointment>lambdaQuery();
-        wrapper.eq(NdAppointment::getPid, param.getPid()).eq(NdAppointment::getGid, param.getGid());
-        List<NdAppointment> list = appointmentService.list(wrapper);
-        if (!(list.size() > 0)) {
-            return ApiResult.error().setMsg("This patient does not have an appointment and cannot be prescribed drug");
+//        LambdaQueryWrapper<NdAppointment> wrapper = Wrappers.<NdAppointment>lambdaQuery();
+//        wrapper.eq(NdAppointment::getPid, param.getPid()).eq(NdAppointment::getGid, param.getGid());
+//        List<NdAppointment> list = appointmentService.list(wrapper);
+//        if (!(list.size() > 0)) {
+//            return ApiResult.error().setMsg("This patient does not have an appointment and cannot be prescribed drug");
+//        }
+        if (!drugService.hasAppointment(param))
+            return ApiResult.error("This patient does not have an appointment and cannot be prescribed drug");
+
+//        NdPrescribe ndPrescribe = new NdPrescribe();
+//        BeanUtil.copyProperties(param, ndPrescribe);
+//        ndPrescribe.setDids(dids);
+//        if (ObjectUtil.isNotEmpty(param.getId())) {
+//            ndPrescribe.setId(param.getId());
+//            prescribeService.updateById(ndPrescribe);
+//            return ApiResult.ok(ndPrescribe).setMsg("Successful modification of drug");
+//        }
+        if(drugService.addNewPrescription(dids,param)){
+            return ApiResult.ok("Prescribing success");
+        }else{
+            return ApiResult.ok("The drug was successfully modified");
         }
-        NdPrescribe ndPrescribe = new NdPrescribe();
-        BeanUtil.copyProperties(param, ndPrescribe);
-        ndPrescribe.setDids(dids);
-        if (ObjectUtil.isNotEmpty(param.getId())) {
-            ndPrescribe.setId(param.getId());
-            prescribeService.updateById(ndPrescribe);
-            return ApiResult.ok(ndPrescribe).setMsg("Successful modification of drug");
-        }
-        prescribeService.save(ndPrescribe);
-        return ApiResult.ok(ndPrescribe
-        ).setMsg("Prescribing success");
     }
 
 
@@ -71,28 +77,31 @@ public class DrugController {
         List<NdDrug> list = drugService.list();
         return ApiResult.ok(list);
     }
+
+
     @AuthCheck
     @ApiOperation("The patient checks the medication prescribed to the doctor, or the doctor checks the medication prescribed to the patient")
-    @GetMapping("/getByPidOrGid")
-    public ApiResult getByPidOrGid(DrugParam param) {
+    @GetMapping("/getDrugList")
+    public ApiResult getDrugList(DrugParam param) {
 
-        LambdaQueryWrapper<NdPrescribe> wrapper = Wrappers.<NdPrescribe>lambdaQuery();
-        wrapper.eq(NdPrescribe::getPid, param.getPid()).eq(NdPrescribe::getGid, param.getGid());
-        LambdaQueryWrapper<NdDrug> wrapper2 = Wrappers.<NdDrug>lambdaQuery();
-        List<NdPrescribe> list = prescribeService.list();
-        List<DrugVo> collect = list.stream().map(s -> {
-            DrugVo drugVo = new DrugVo();
-            BeanUtil.copyProperties(s, drugVo);
-            String[] split = s.getDids().split(",");
-            List<NdDrug> ndDrugList = new ArrayList<>();
-            for (String s1 : split) {
-                NdDrug ndDrug = drugService.getById(s1);
-                ndDrugList.add(ndDrug);
-            }
-            drugVo.setNdDrugList(ndDrugList);
-            return drugVo;
-        }).collect(Collectors.toList());
-        return ApiResult.ok(collect);
+//        LambdaQueryWrapper<NdPrescribe> wrapper = Wrappers.<NdPrescribe>lambdaQuery();
+//        wrapper.eq(NdPrescribe::getPid, param.getPid()).eq(NdPrescribe::getGid, param.getGid());
+//        LambdaQueryWrapper<NdDrug> wrapper2 = Wrappers.<NdDrug>lambdaQuery();
+//        List<NdPrescribe> list = prescribeService.list();
+//        List<DrugVo> collect = list.stream().map(s -> {
+//            DrugVo drugVo = new DrugVo();
+//            BeanUtil.copyProperties(s, drugVo);
+//            String[] split = s.getDids().split(",");
+//            List<NdDrug> ndDrugList = new ArrayList<>();
+//            for (String s1 : split) {
+//                NdDrug ndDrug = drugService.getById(s1);
+//                ndDrugList.add(ndDrug);
+//            }
+//            drugVo.setNdDrugList(ndDrugList);
+//            return drugVo;
+//        }).collect(Collectors.toList());
+        List<DrugVo> drugList = drugService.checkDrugsByGp(param);
+        return ApiResult.ok(drugList);
     }
 
     /**
@@ -101,9 +110,12 @@ public class DrugController {
      */
     @AuthCheck
     @ApiOperation("Remove medications prescribed by doctors")
-    @PostMapping("/del/{id}")
-    public ApiResult del(@PathVariable Long id) {
-        prescribeService.removeById(id);
-        return ApiResult.ok();
+    @PostMapping("/remove/{id}")
+    public ApiResult remove(@PathVariable Long id) {
+        if (drugService.removePrescription(id))
+            return ApiResult.ok("Successfully removed!");
+
+        return ApiResult.error("Remove failure! This record doesn't exist.");
+
     }
 }

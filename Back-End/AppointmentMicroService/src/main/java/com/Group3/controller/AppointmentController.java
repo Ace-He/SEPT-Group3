@@ -1,15 +1,10 @@
 package com.Group3.controller;
 
 
-import cn.hutool.core.bean.BeanUtil;
 import com.Group3.common.api.ApiResult;
 import com.Group3.common.interceptor.AuthCheck;
-import com.Group3.common.util.DateUtil;
-import com.Group3.entity.NdAppointment;
 import com.Group3.param.AppointmentParam;
 import com.Group3.service.AppointmentService;
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.List;
 
 
 @Api("Booking module")

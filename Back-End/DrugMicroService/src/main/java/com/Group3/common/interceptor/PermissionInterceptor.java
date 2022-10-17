@@ -45,7 +45,7 @@ public class PermissionInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("------------------------->Interceptor");
+        log.info("-------------------->Interceptor (Access Violation)");
         Optional<AuthCheck> authCheck = this.getAuthCheck(handler);
         if (!authCheck.isPresent()) {
             return true;

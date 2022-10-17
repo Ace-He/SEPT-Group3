@@ -1,5 +1,3 @@
-
-
 package com.Group3.common.api;
 
 import com.alibaba.fastjson.annotation.JSONField;

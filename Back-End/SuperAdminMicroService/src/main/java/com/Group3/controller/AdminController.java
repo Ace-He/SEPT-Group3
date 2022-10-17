@@ -2,11 +2,13 @@ package com.Group3.controller;
 
 
 import com.Group3.common.api.ApiResult;
-import com.Group3.common.bean.LocalUser;
 import com.Group3.common.interceptor.AuthCheck;
+import com.Group3.entity.NdGp;
+import com.Group3.entity.NdPatient;
 import com.Group3.param.GPQueryParam;
 import com.Group3.service.GpService;
 import com.Group3.service.PatientService;
+import com.Group3.service.impl.SuperAdminService;
 import com.Group3.vo.GPVo;
 import com.Group3.vo.PatientVo;
 import io.swagger.annotations.Api;
@@ -30,21 +32,52 @@ public class AdminController {
 
     private final GpService gpService;
 
+    @Autowired
+    SuperAdminService  superAdminService;
+
+
+    @ApiOperation("Get a GP's information")
+    @GetMapping("/get/gp")
+    @AuthCheck
+    public ApiResult getGp(@RequestParam(name = "gid") Long gid) {
+        if (!superAdminService.isAdmin())
+            return ApiResult.error("Please log in as an Admin!");
+
+        NdGp gp = gpService.getGp(gid);
+        return ApiResult.ok(gp);
+    }
+
+
     @AuthCheck
     @ApiOperation("Get all GP's information")
-    @GetMapping("/gpList")
+    @GetMapping("/get/gpList")
     public ApiResult listGp(GPQueryParam param) {
-        if(LocalUser.getUser().getUserType() != 0)return ApiResult.error("Please log in as an Admin!");
+        if (!superAdminService.isAdmin())
+            return ApiResult.error("Please log in as an Admin!");
+
         List<GPVo> list = gpService.listGp(param);
         return ApiResult.ok(list);
     }
 
-    @ApiOperation("Get all Patient's information")
-    @GetMapping("/patientList")
+    @ApiOperation("Get a Patient's information")
+    @GetMapping("/get/patient")
     @AuthCheck
-    public ApiResult listPatient(@RequestParam(name = "pid") Long pid) {
-        if(LocalUser.getUser().getUserType() != 0)return ApiResult.error().setMsg("Please log in as an Admin!");
+    public ApiResult getPatient(@RequestParam(name = "pid") Long pid) {
+        if (!superAdminService.isAdmin())
+            return ApiResult.error("Please log in as an Admin!");
+
         List<PatientVo> list = patientService.listPatient(pid);
+        return ApiResult.ok(list);
+    }
+
+    @ApiOperation("Get all Patient's information")
+    @GetMapping("/get/patientList")
+    @AuthCheck
+    public ApiResult getPatientList() {
+        if (!superAdminService.isAdmin())
+            return ApiResult.error("Please log in as an Admin!");
+
+        List<NdPatient> list = patientService.list();
         return ApiResult.ok(list);
     }
 

@@ -2,19 +2,19 @@ package com.Group3.controller;
 
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.ObjectUtil;
 import com.Group3.common.api.ApiResult;
 import com.Group3.common.interceptor.AuthCheck;
 import com.Group3.entity.NdDrug;
-import com.Group3.entity.NdGp;
-import com.Group3.entity.NdNews;
+import com.Group3.entity.NdNotification;
 import com.Group3.entity.NdPrescribe;
 import com.Group3.service.DrugService;
 import com.Group3.service.GPService;
-import com.Group3.service.NewsService;
+import com.Group3.service.NotificationService;
 import com.Group3.service.PrescribeService;
 import com.Group3.vo.DrugVo;
-import com.Group3.vo.NewsVo;
-import com.Group3.vo.NewsVotwo;
+import com.Group3.vo.AppointmentNotificationVo;
+import com.Group3.vo.DrugNotificationVo;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import io.swagger.annotations.Api;
@@ -25,28 +25,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Api("Notification module")
+@Api("Notification MicroService")
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/notification")
 public class NotificationController {
 
-    private final NewsService newsService;
-    private final PrescribeService prescribeService;
-    private final GPService gpService;
-    private final DrugService drugService;
+    @Autowired
+    NotificationService notificationService;
+
 
 
     /**
      * Delete notification
-     * @param nid
-     * @return
      */
     @AuthCheck
     @PostMapping("/delById/{id}")
     public ApiResult delById(@PathVariable("id") Long id){
-        newsService.removeById(id);
-        return ApiResult.ok();
+        notificationService.removeById(id);
+        return ApiResult.ok("Delete successfully");
     }
 
 
@@ -60,17 +57,21 @@ public class NotificationController {
     @AuthCheck
     @GetMapping("/getAppointment/{pid}")
     public ApiResult byIdPid(@PathVariable("pid") Long pid) {
-        LambdaQueryWrapper<NdNews> wrapper = Wrappers.lambdaQuery();
-        wrapper.eq(NdNews::getPid, pid).isNotNull(NdNews::getGid);
-        List<NdNews> list = newsService.list(wrapper);
-        List<NewsVo> collect = list.stream().map(s -> {
-            NewsVo newsVo = new NewsVo();
-            BeanUtil.copyProperties(s, newsVo);
-            NdGp ndGp = gpService.getById(s.getGid());
-            newsVo.setNdGp(ndGp);
-            return newsVo;
-        }).collect(Collectors.toList());
-        return ApiResult.ok(collect);
+//        LambdaQueryWrapper<NdNotification> wrapper = Wrappers.lambdaQuery();
+//        wrapper.eq(NdNotification::getPid, pid).isNotNull(NdNotification::getGid);
+//        List<NdNotification> list = notificationService.list(wrapper);
+//        List<NotificationVo> collect = list.stream().map(s -> {
+//            NotificationVo notificationVo = new NotificationVo();
+//            BeanUtil.copyProperties(s, notificationVo);
+//            NdGp ndGp = gpService.getById(s.getGid());
+//            notificationVo.setNdGp(ndGp);
+//            return notificationVo;
+//        }).collect(Collectors.toList());
+        List<AppointmentNotificationVo> list = notificationService.appointmentNotifis(pid);
+        if(ObjectUtil.isEmpty(list))
+            return ApiResult.ok("No appointment notifications");
+        else
+            return ApiResult.ok(list);
     }
 
 
@@ -82,23 +83,27 @@ public class NotificationController {
     @AuthCheck
     @GetMapping("/getDrug/{pid}")
     public ApiResult getDrug(@PathVariable("pid") Long pid) {
-        LambdaQueryWrapper<NdNews> wrapper = Wrappers.lambdaQuery();
-        wrapper.eq(NdNews::getPid, pid).isNotNull(NdNews::getPrescribeId);
-        List<NdNews> list = newsService.list(wrapper);
-        List<NewsVotwo> collect = list.stream().map(s -> {
-            NewsVotwo newsVotwo = new NewsVotwo();
-            BeanUtil.copyProperties(s, newsVotwo);
-            NdPrescribe ndPrescribe = prescribeService.getById(s.getPrescribeId());
-            String[] split = ndPrescribe.getDids().split(",");
-            DrugVo drugVo = new DrugVo();
-            BeanUtil.copyProperties(ndPrescribe, drugVo);
-            for (String s1 : split) {
-                NdDrug ndDrug = drugService.getById(s1);
-                drugVo.getNdDrugList().add(ndDrug);
-            }
-            return newsVotwo;
-        }).collect(Collectors.toList());
-        return ApiResult.ok(collect);
+//        LambdaQueryWrapper<NdNotification> wrapper = Wrappers.lambdaQuery();
+//        wrapper.eq(NdNotification::getPid, pid).isNotNull(NdNotification::getPrescribeId);
+//        List<NdNotification> list = notificationService.list(wrapper);
+//        List<DrugNotificationVo> collect = list.stream().map(s -> {
+//            DrugNotificationVo drugNotificationVo = new DrugNotificationVo();
+//            BeanUtil.copyProperties(s, drugNotificationVo);
+//            NdPrescribe ndPrescribe = prescribeService.getById(s.getPrescribeId());
+//            String[] split = ndPrescribe.getDids().split(",");
+//            DrugVo drugVo = new DrugVo();
+//            BeanUtil.copyProperties(ndPrescribe, drugVo);
+//            for (String s1 : split) {
+//                NdDrug ndDrug = drugService.getById(s1);
+//                drugVo.getNdDrugList().add(ndDrug);
+//            }
+//            return drugNotificationVo;
+//        }).collect(Collectors.toList());
+        List<DrugNotificationVo> list = notificationService.DrugNotifis(pid);
+        if(ObjectUtil.isEmpty(list))
+            return ApiResult.ok("No drug notifications");
+        else
+            return ApiResult.ok(list);
     }
 
 }

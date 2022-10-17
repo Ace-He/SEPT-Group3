@@ -5,9 +5,9 @@ import com.Group3.param.AppointmentParam;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 public interface AppointmentService extends IService<NdAppointment> {
-    public boolean isValid(AppointmentParam param);
+    boolean isValid(AppointmentParam param);
 
-    public boolean addAppointment(AppointmentParam param);
+    boolean addAppointment(AppointmentParam param);
 
-    public boolean cancelAppointment(AppointmentParam param);
+    boolean cancelAppointment(AppointmentParam param);
 }

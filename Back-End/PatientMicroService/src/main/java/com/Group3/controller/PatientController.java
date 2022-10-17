@@ -43,23 +43,27 @@ public class PatientController {
     /**
      * @param flag    0：add，1：modify
      * @param patient
-     * @return
+     * @return ApiResult
      */
     @AuthCheck
     @ApiOperation("Add or modify your health information")
     @PostMapping("/edit/info/{flag}")
     public ApiResult editInfo(@PathVariable(value = "flag") Integer flag, @RequestBody PatientParam patient) {
-        NdPatient ndPatient = new NdPatient();
-        BeanUtil.copyProperties(patient, ndPatient);
-        if (flag == 1) {
-            if (patientService.updateById(ndPatient))
-                return ApiResult.ok("Edit health information successfully");
-            return ApiResult.error("Edit health information fail");
-        } else {
-            if (patientService.save(ndPatient))
-                return ApiResult.ok("Adding information successfully");
-            return ApiResult.error("Failed to add information");
-        }
+//        NdPatient ndPatient = new NdPatient();
+//        BeanUtil.copyProperties(patient, ndPatient);
+//        if (flag == 1) {
+//            if (patientService.updateById(ndPatient))
+//                return ApiResult.ok("Edit health information successfully");
+//            return ApiResult.error("Edit health information fail");
+//        } else {
+//            if (patientService.save(ndPatient))
+//                return ApiResult.ok("Adding information successfully");
+//            return ApiResult.error("Failed to add information");
+//        }
+        if (!patientService.editInformation(flag, patient))
+            return ApiResult.error("Failed to add information, Please fill in the correct parameters. Hint: 0：add，1：modify ");
+
+        return ApiResult.ok("Edit health information successfully");
     }
 
     /**
