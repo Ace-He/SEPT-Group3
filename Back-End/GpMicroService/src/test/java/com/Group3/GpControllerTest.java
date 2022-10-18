@@ -21,7 +21,7 @@ public class GpControllerTest {
 
 
     @Test
-    public void listGp_fail() throws Exception{
+    public void listGp_fail() throws Exception{   // needs jwt token
         mockMvc.perform(MockMvcRequestBuilders.get("/listGp")).
                 andExpect(MockMvcResultMatchers.status().is(404)).
                 andDo(MockMvcResultHandlers.print()).andReturn();

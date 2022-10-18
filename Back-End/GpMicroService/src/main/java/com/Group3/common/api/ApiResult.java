@@ -11,7 +11,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-//@ToString
 public class ApiResult<T> implements Serializable {
 
     @ApiModelProperty("Response Code")
