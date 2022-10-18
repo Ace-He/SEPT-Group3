@@ -21,8 +21,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
-            <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -36,12 +35,13 @@
             <version>5.3.22</version>
             <scope>compile</scope>
         </dependency>
+        <!--mybatis-plus-->
         <dependency>
             <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-core</artifactId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.3.0</version>
-            <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
@@ -51,12 +51,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+
         <!--mysql-->
-        <!--数据库驱动-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -93,12 +94,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.79</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>2.0.3</version>
             <scope>compile</scope>
         </dependency>
         <dependency>

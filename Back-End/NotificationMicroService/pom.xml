@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>com.Group3</groupId>
-    <artifactId>NewsMicroService</artifactId>
+    <artifactId>NotificationMicroService</artifactId>
     <version>1.0-SNAPSHOT</version>
 
 
