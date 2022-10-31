@@ -101,6 +101,12 @@
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>eu.bitwalker</groupId>
+            <artifactId>UserAgentUtils</artifactId>
+            <version>1.21</version>
+            <scope>compile</scope>
+        </dependency>
 
     </dependencies>
 
@@ -112,14 +118,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
 
                 <configuration>
-                    <layout>ZIP</layout>
-                    <!-- 注释后和依赖包一起打包 取消注释则不打包依赖-->
-                    <includes>
-                        <include>
-                            <groupId>nothing</groupId>
-                            <artifactId>nothing</artifactId>
-                        </include>
-                    </includes>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>

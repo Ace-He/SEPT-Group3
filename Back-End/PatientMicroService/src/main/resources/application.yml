@@ -8,8 +8,8 @@ server:
 spring:
   datasource:
     username: root
-    password: 123456
-    url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+    password: 12345678
+    url: jdbc:mysql://mysql.cf84vlxrdwp6.us-west-1.rds.amazonaws.com:3306/ace?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
     driver-class-name: com.mysql.cj.jdbc.Driver
 
     #druid Proprietary configuration of data sources
@@ -34,7 +34,7 @@ spring:
     connectionoProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500\
 
   redis:
-    host: localhost # Redis Server address
+    host: 172.31.29.49 # Redis Server address
     database: 0 # Redis database index (default is 0)
     port: 6379 # Redis server connection port
     password: # Redis server connection password (default: empty)
@@ -47,7 +47,7 @@ spring:
     timeout: 3000ms # Connection timeout (ms)
 
     rabbitmq:
-      host: 127.0.0.1
+      host: 172.31.29.49
       port: 5672
       username: guest
       password: guest
